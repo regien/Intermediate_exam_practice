@@ -1,5 +1,12 @@
 #include "t_point.h"
 
+/*
+** They are printing the 2D with an extra space so you
+** didn't have to do the stupid math
+** you have both solutions in the commented and uncomented versions
+*/
+
+
 void	mod_point(t_point *value, int x, int y)
 {
 	value->x = x;
@@ -15,9 +22,11 @@ void	flood_fill(char **tab, t_point size, t_point begin)
 	if (begin.x > 0 && begin.x <= size.x && begin.y > 0 && begin.y <= size.y)
 	{
 //		printf("entering\n");
-		if (tab[(begin.y) - 1][(begin.x + (begin.x - 1)) - 1] == '0')
+//		if (tab[(begin.y) - 1][(begin.x + (begin.x - 1)) - 1] == '0')
+		if (tab[begin.y - 1][begin.x - 1] == '0')
 		{
-			tab[(begin.y) - 1][(begin.x + (begin.x - 1)) - 1] = 'F';
+//			tab[(begin.y) - 1][(begin.x + (begin.x - 1)) - 1] = 'F';
+			tab[begin.y - 1][begin.x - 1] = 'F';
 			// begin recursive stuff
 			mod_point(&holder, begin.x, begin.y - 1); // top
 			flood_fill(tab, size, holder);
