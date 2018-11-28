@@ -3,6 +3,9 @@
 #include <string.h>
 #include <string.h>
 
+// possibly optimazed solution
+// https://leetcode.com/discuss/interview-question/125088/fb-phone-screen-convert-a-bst-into-a-doubly-linked-list
+
 
 struct	s_node				{
 	int						value;
