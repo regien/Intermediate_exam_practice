@@ -2,15 +2,30 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Floyds's Cycle-finding algorithm (fastest one)
+// you have two pointer, one increasing one by one and the
+// other one increasing two each time
+// https://www.geeksforgeeks.org/detect-loop-in-a-linked-list/
+
 struct	s_node				{
 	int					value;
 	struct	s_node		*next;
 };
 
-// Floyds's Cycle-finding algorithm (fastest one)
-// you have two pointer, one increasing one by one and the
-// other one increasing two each time
-// https://www.geeksforgeeks.org/detect-loop-in-a-linked-list/
+int						is_looping(struct s_node *node)
+{
+	struct	s_node		*slow_p = node;
+	struct	s_node		*fast_p = node;
+
+	while (slow_p && fast_p && fast_p->next)
+	{
+		slow_p = slow_p->next;
+		fast_p = fast_p->next->next;
+		if (slow_p == fast_p)
+			return (1);
+	}
+	return (0);
+}
 
 struct	s_node			*new_node(int i)
 {
@@ -26,24 +41,6 @@ void					add_list(struct s_node **head, struct s_node *node)
 {
 	node->next = (*head);
 	(*head) = node;
-}
-
-int						is_looping(struct s_node *node)
-{
-	struct	s_node		*slow_p = node;
-	struct	s_node		*fast_p = node;
-
-	while (slow_p && fast_p && fast_p->next)
-	{
-		slow_p = slow_p->next;
-		fast_p = fast_p->next->next;
-		if (slow_p == fast_p)
-		{
-			printf("Found loop\n");
-			return (1);
-		}
-	}
-	return (0);
 }
 
 void					printing_list(struct s_node **head)
@@ -71,7 +68,7 @@ int		main(void)
 
 	printing_list(&head);
 	printf("is looping? |%d|\n", is_looping(head));
-	
+
 	head->next->next->next->next = head;
 	printf("is looping? |%d|\n", is_looping(head));
 }
