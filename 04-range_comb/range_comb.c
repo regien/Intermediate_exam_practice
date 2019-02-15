@@ -29,5 +29,11 @@ void	permute(char *a, int left, int right)
 
 int		main(void)
 {
-	permute("ABC", 0, 2);
+	char	str[] = "ABC";
+
+	permute(str, 0, 2);
 }
+
+
+
+
